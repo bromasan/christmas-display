@@ -1,0 +1,56 @@
+<div class="header">
+    <h1>Admin Page</h1>
+</div>
+
+<div class="flex-component">
+    <div class="container">
+        <div class="flex-component">
+            <h3 class="list-header">List of Sayings</h3>
+        </div>
+        <form [formGroup]="checkForm" (ngSubmit)="setSaying()">
+            <div *ngFor="let saying of sayings" class="form-div">
+                <div class="form-check">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        <input
+                        mdbCheckbox
+                        class="form-check-input"
+                        type="checkbox"
+                        [value]="saying.sayingId.S"
+                        id="flexCheckChecked"
+                        [checked]="saying.active.S === 'A'"
+                        (change)="onCheckboxChange($event)"
+                        />
+                      {{saying?.message?.S}}
+                    </label>
+                  </div>
+            </div>
+            <div class="flex-component">
+                <button (click)="deleteSaying()" class="btn btn-outline-warning left-btn" type="button" id="button-addon2">Delete Selected</button>
+                <button type="submit" class="btn btn-outline-primary right-btn">Set Selected</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="flex-component">
+            <h3 class="list-header">Add New Saying</h3>
+        </div>
+
+        <div class="input-group mb-3 mt-2">
+            <input type="text" [formControl]="textForm" class="form-control" placeholder="New saying" aria-label="New saying" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button (click)="addNewSaying()" class="btn btn-outline-primary" type="button" id="button-addon2">Add Saying</button>
+            </div>
+        </div>
+
+        <div class="flex-component button-spacing">
+            <h3 class="list-header">Shuffle All Sayings</h3>
+        </div>
+
+        <div class="flex-component">
+            <button (click)="shuffleAllSayings()" type="button" class="btn btn-outline-success shuffle-btn">Shuffle All</button>
+        </div>
+
+    </div>
+</div>
+
